@@ -38,3 +38,12 @@ El sistema verifica si el usuario seleccionó al menos una opción, si no lo hiz
 El programa crea una cadena con los tipos de caracteres seleccionados por el usuario.
 
 ## 6. Generación de contraseña aleatoria
+Con la longitud y los caracteres seleccionados, se genera una contraseña de manera aleatoria.
+
+## 7. Evaluación del nivel de seguridad
+Analiza la contraseña generada considerando:
+- Longitud
+- Tipos de caracteres incluidos
+
+## 8. Mostrar resultados
+El sistema mostrará la contraseña generada y su nivel de seguridad al usuario.
