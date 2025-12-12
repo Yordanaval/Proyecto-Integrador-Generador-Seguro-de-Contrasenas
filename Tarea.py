@@ -10,21 +10,22 @@ letras_mayusculas = letras_minusculas.upper()
 numeros = "0123456789"
 simbolos = "@!*#$%"
 
-#Se pregunta al usuario la longitud de caracteres que desea en la contraseña.
-
-longitud = input("Ingresa la longitud deseada para la contraseña: ")
-
-#Si el usuario escribe palabras, el programa no lo dejará avanzar hasta que escriba un número.
-while not longitud.isdigit():     
-    print("Debe ingresar solo números, no letras")
-    longitud = input("Ingresa la longitud deseada para la contraseña: ")
-
-#La cadena de texto se hace número y se le hace saber al usuario que es válida la longitud.
-longitud = int(longitud) 
-print("Longitud válida")
-
 #Se inicia un ciclo para que el usuario pueda generar varias contraseñas si así lo desea.
 while True:
+
+#Se pregunta al usuario la longitud de caracteres que desea en la contraseña.
+
+    longitud = input("Ingresa la longitud deseada para la contraseña: ")
+
+#Si el usuario escribe palabras, el programa no lo dejará avanzar hasta que escriba un número.
+    while not longitud.isdigit():     
+        print("Debe ingresar solo números, no letras")
+        longitud = input("Ingresa la longitud deseada para la contraseña: ")
+
+#La cadena de texto se hace número y se le hace saber al usuario que es válida la longitud.
+    longitud = int(longitud) 
+    print("Longitud válida")
+
 #Se crea una función para que cuando el usuario elija una respuesta sea solo "si" o "no" y de este modo sea más fácil el código.
     def opciones(respuesta):
         return "si" if respuesta.lower() in ("si", "s", "sí", "y") else "no"
@@ -47,17 +48,31 @@ while True:
 
 #Se crea una variable para almacenar la contraseña que se va a generar. Por defecto, es en minúsculas.
     contraseña = letras_minusculas
+#Se crea la variable requerido, que se utilizará para almacenar las letras requeridas.
+    requerido = []
 
-#Dependiendo de las opciones que elija el usuario, se irán añadiendo los caracteres a la variable de la contraseña.
+#Dependiendo de las opciones elegidas por el usuario, se van añadiendo los caracteres a la variable contraseña.
     if opcion_1 == "si":
         contraseña += letras_mayusculas
+        requerido.append(secrets.choice(letras_mayusculas))
     if opcion_2 == "si":
         contraseña += numeros
+        requerido.append(secrets.choice(numeros))
     if opcion_3 == "si":
         contraseña += simbolos
+        requerido.append(secrets.choice(simbolos))
 
-#Se genera la contraseña con la longitud y los caracteres elegidos por el usuario.
-    resultado = ''.join(secrets.choice(contraseña) for i in range(longitud))
+#Acá se genera la contraseña, asegurando que se incluyan los caracteres requeridos."
+    nueva = [secrets.choice(contraseña) for _ in range(longitud - len(requerido))]
+    final = nueva + requerido
+
+#Se mezclan los caracteres para que no queden los requeridos al final.
+    n = len(final)
+    for i in range(n - 1, 0, -1):
+        j = secrets.randbelow(i + 1)
+        final[i], final[j] = final[j], final[i]
+
+    contraseña_final = "".join(final)
 
 #Se evalua la contraseña y se le indica al usuario si es segura o débil.
 #Para esto se crea la variable puntos, que se incrementará en cada una de las opciones elegidas, iniciando por la longitud.
@@ -95,7 +110,7 @@ while True:
         nivel_de_seguridad = "Muy débil"
 
 #Se le muestra al usuario la contraseña generada y su nivel de seguridad.
-    print("Contraseña generada: " + resultado)
+    print("Contraseña generada: " + contraseña_final)
     print("Nivel de seguridad: " + nivel_de_seguridad)
 
 #Se le pregunta al usuario si desea generar otra contraseña.
