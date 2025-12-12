@@ -16,3 +16,25 @@ Crear un generador seguro de contraseñas que permita al usuario crear contrase�
 - Números
 - Símbolos especiales
 - Longitud personalizada
+
+# Funcionalidades del Generador Seguro de Contraseñas
+
+## 1. Ingreso de longitud de la contraseña
+El usuario deberá ingresar los caracteres que desea usa en la contraseña.
+
+## 2. Validación de entrada
+El sistema verifica si la entrada del usuario contiene letras, si lo hace, mostrará un mensaje indicando que solo puede ingresar números, no letras.
+
+## 3. Selección de tipos de caracteres
+El usuario puede elegir entre:
+* Mayúsculas
+* Minúsculas
+* Símbolos
+
+## 4. Validación de selección
+El sistema verifica si el usuario seleccionó al menos una opción, si no lo hizo, mostrará un mensaje indicando que debe seleccionar al menos una opción.
+
+## 5. Construcción del conjunto de caracteres
+El programa crea una cadena con los tipos de caracteres seleccionados por el usuario.
+
+## 6. Generación de contraseña aleatoria
