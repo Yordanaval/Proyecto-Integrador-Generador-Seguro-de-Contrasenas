@@ -62,7 +62,7 @@ while True:
         contraseña += simbolos
         requerido.append(secrets.choice(simbolos))
 
-#Acá se genera la contraseña, asegurando que se incluyan los caracteres requeridos."
+#Acá se genera la contraseña, asegurando que se incluyan los caracteres requeridos.
     nueva = [secrets.choice(contraseña) for _ in range(longitud - len(requerido))]
     final = nueva + requerido
 
@@ -122,4 +122,5 @@ while True:
     if continuar == "si":
         continue
     else:
+        print("Gracias por usar el generador de contraseñas seguras.")
         break
